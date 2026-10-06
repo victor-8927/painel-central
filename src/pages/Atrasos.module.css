@@ -1,0 +1,41 @@
+﻿.page   { padding: 28px 32px; height: 100vh; overflow-y: auto; }
+.header { margin-bottom: 20px; }
+.h1     { font-size: 22px; font-weight: 700; color: var(--text-1); letter-spacing: 1px; }
+.date   { font-size: 11px; color: var(--text-muted); margin-top: 4px; text-transform: capitalize; }
+
+.section      { margin-bottom: 28px; }
+.sectionTitle {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  color: var(--text-muted); margin-bottom: 12px;
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 8px; }
+.summaryCard {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px;
+  transition: border-color 0.15s;
+}
+.summaryCard:hover { border-color: var(--red); }
+.summaryChk  { font-size: 10px; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.3px; }
+.summaryNum  { font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; }
+.summaryLabel{ font-size: 9px; color: var(--text-muted); margin-top: 3px; }
+
+.tableWrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+.table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.table th {
+  padding: 10px 12px; text-align: left;
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--text-muted); text-transform: uppercase;
+  background: var(--bg-1); border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-2); white-space: nowrap; }
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: var(--bg-2); }
+
+.tdVda   { font-weight: 700; color: var(--text-1); }
+.tdDelay { color: var(--red); font-weight: 700; }
+.tdJust  { max-width: 200px; white-space: normal; font-size: 11px; color: var(--text-muted); }
+
+.loading { color: var(--text-muted); padding: 40px; text-align: center; font-size: 13px; }
+.vazio   { color: var(--green); font-weight: 600; padding: 20px; font-size: 13px; }

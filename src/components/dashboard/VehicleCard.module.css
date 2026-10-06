@@ -1,0 +1,59 @@
+﻿.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.card:hover    { border-color: var(--green-dim); background: var(--bg-2); }
+.cardAtraso    { border-color: #7f1010; background: #120808; }
+.cardAtraso:hover { border-color: var(--red); }
+
+.head {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 12px;
+}
+.vda  { font-size: 17px; font-weight: 700; color: var(--text-1); letter-spacing: 0.5px; }
+.meta { font-size: 10px; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.5px; }
+
+.badge {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 4px;
+  letter-spacing: 0.5px; white-space: nowrap;
+}
+.badge_green  { background: rgba(0,230,118,0.1);  color: var(--green); }
+.badge_amber  { background: rgba(255,171,0,0.1);  color: var(--amber); }
+.badge_red    { background: rgba(255,82,82,0.1);  color: var(--red);   }
+.badge_blue   { background: rgba(68,138,255,0.1); color: var(--blue);  }
+.badge_purple { background: rgba(224,64,251,0.1); color: var(--purple);}
+.badge_muted  { background: var(--bg-2);          color: var(--text-muted); }
+.badge_done   { background: rgba(0,230,118,0.08); color: var(--text-3); }
+
+.timeline {
+  display: flex; align-items: center;
+  gap: 4px; margin-bottom: 10px;
+}
+.tline { flex: 1; height: 1px; background: var(--border); }
+.step  { text-align: center; flex-shrink: 0; }
+.stepDot {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--bg-2); border: 1px solid var(--border);
+  margin: 0 auto 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; color: transparent;
+}
+.stepDone  { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.stepLabel { font-size: 8px; color: var(--text-muted); white-space: nowrap; }
+
+.alertRow {
+  font-size: 10px; color: var(--red); font-weight: 600;
+  padding: 5px 8px; background: rgba(255,82,82,0.08);
+  border-radius: 4px; margin-bottom: 6px; letter-spacing: 0.3px;
+}
+
+.kmRow {
+  display: flex; justify-content: space-between;
+  font-size: 10px; color: var(--text-muted);
+  padding-top: 8px; border-top: 1px solid var(--border);
+}

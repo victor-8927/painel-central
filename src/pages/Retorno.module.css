@@ -1,0 +1,63 @@
+﻿.page   { padding: 28px 32px; height: 100vh; overflow-y: auto; }
+.header { margin-bottom: 20px; }
+.h1     { font-size: 22px; font-weight: 700; color: var(--text-1); letter-spacing: 1px; }
+.date   { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+.sucesso {
+  padding: 10px 14px; background: rgba(0,230,118,0.08);
+  border: 1px solid var(--green-dim); border-radius: 6px;
+  color: var(--green); font-size: 12px; font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.layout { display: grid; grid-template-columns: 340px 1fr; gap: 16px; }
+
+.lista { display: flex; flex-direction: column; gap: 8px; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  cursor: pointer; transition: all 0.15s;
+}
+.card:hover  { border-color: var(--green-dim); }
+.cardSel     { border-color: var(--green); background: var(--bg-2); }
+.cardHead    { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.cardVda     { font-size: 16px; font-weight: 700; color: var(--text-1); }
+.cardMeta    { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.cardState   { font-size: 9px; color: var(--amber); background: rgba(255,171,0,0.1); padding: 3px 7px; border-radius: 4px; }
+.cardKm      { font-size: 10px; color: var(--text-muted); }
+
+.detalhe {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  height: fit-content;
+}
+.detalheTitle { font-size: 16px; font-weight: 700; color: var(--text-1); }
+
+.volSection { background: var(--bg-1); border-radius: 8px; padding: 14px; }
+.volType    { font-size: 11px; font-weight: 700; color: var(--text-2); margin-bottom: 6px; letter-spacing: 1px; }
+.volAlert   { font-size: 10px; color: var(--red); margin-bottom: 10px; }
+.skuGrid    { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; }
+.skuField   {}
+.skuLabel   { font-size: 10px; font-weight: 700; color: var(--text-muted); margin-bottom: 3px; }
+.skuSaiu    { font-size: 9px; color: var(--text-muted); margin-bottom: 5px; }
+.skuInput   {
+  width: 100%; padding: 10px;
+  background: var(--bg-0); border: 1px solid var(--border);
+  border-radius: 6px; font-size: 18px; font-weight: 700;
+  text-align: center; color: var(--text-1); outline: none;
+}
+.skuInput:focus { border-color: var(--green); }
+
+.erro     { font-size: 12px; color: var(--red); }
+.btnSalvar {
+  width: 100%; padding: 14px; background: var(--green-dim);
+  color: var(--green); border: 1px solid var(--green-dim);
+  border-radius: 8px; font-size: 14px; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.5px; transition: all 0.15s;
+}
+.btnSalvar:hover    { background: var(--green); color: var(--bg-0); }
+.btnSalvar:disabled { opacity: 0.5; }
+
+.loading { color: var(--text-muted); padding: 40px; text-align: center; font-size: 13px; }
+.vazio   { color: var(--text-muted); padding: 20px; font-size: 13px; }

@@ -1,0 +1,69 @@
+﻿.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+  display: flex; justify-content: flex-end;
+  backdrop-filter: blur(2px);
+}
+.panel {
+  width: 400px; height: 100%;
+  background: var(--bg-1);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.head {
+  display: flex; justify-content: space-between;
+  align-items: flex-start;
+}
+.vda   { font-size: 20px; font-weight: 700; color: var(--text-1); letter-spacing: 0.5px; }
+.meta  { font-size: 10px; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.5px; }
+.close {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--bg-2); color: var(--text-muted);
+  font-size: 12px; display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.15s; flex-shrink: 0;
+}
+.close:hover { background: var(--bg-3); color: var(--text-1); }
+
+.kms {
+  background: var(--bg-2); border-radius: 8px;
+  padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;
+}
+.km {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--text-muted);
+}
+.km strong  { color: var(--text-1); font-size: 13px; }
+.kmGreen    { color: var(--green) !important; }
+
+.section {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  color: var(--text-muted);
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+
+.volRow {
+  background: var(--bg-2); border-radius: 8px;
+  padding: 10px 12px; margin-bottom: 6px;
+}
+.volType { font-size: 10px; font-weight: 700; color: var(--text-muted); margin-bottom: 3px; letter-spacing: 1px; }
+.volOc   { font-size: 10px; color: var(--amber); margin-bottom: 3px; }
+.volSkus { font-size: 12px; color: var(--text-2); }
+
+.history { display: flex; flex-direction: column; gap: 6px; }
+.ev {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px; border-radius: 6px;
+  background: var(--bg-2);
+}
+.evDelay { background: rgba(255,82,82,0.06); border: 1px solid rgba(255,82,82,0.15); }
+.evTime  { font-size: 10px; color: var(--text-muted); font-family: monospace; min-width: 38px; margin-top: 1px; }
+.evLabel { font-size: 12px; font-weight: 600; color: var(--text-1); }
+.evActor { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.evAlert { font-size: 10px; color: var(--red); margin-top: 4px; }
+
+.empty { font-size: 12px; color: var(--text-muted); }

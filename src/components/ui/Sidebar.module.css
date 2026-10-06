@@ -1,0 +1,54 @@
+﻿.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: var(--bg-1);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+}
+
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.brandIcon { font-size: 22px; }
+.brandName { font-size: 13px; font-weight: 700; color: var(--green); letter-spacing: 2px; }
+.brandSub  { font-size: 9px;  color: var(--text-muted); margin-top: 1px; letter-spacing: 1px; }
+
+.nav { flex: 1; padding: 4px 8px; display: flex; flex-direction: column; gap: 2px; }
+
+.navItem {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 6px;
+  font-size: 12px; color: var(--text-3);
+  transition: all 0.15s; text-align: left; width: 100%;
+  letter-spacing: 0.5px;
+}
+.navItem:hover  { background: var(--bg-2); color: var(--text-2); }
+.navActive      { background: var(--bg-3); color: var(--green); font-weight: 600; border-left: 2px solid var(--green); }
+.navIcon        { font-size: 14px; width: 18px; text-align: center; }
+
+.footer {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+}
+.ws {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; margin-bottom: 8px; letter-spacing: 0.5px;
+}
+.wsOn  { color: var(--green); }
+.wsOff { color: var(--text-muted); }
+.wsDot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor; flex-shrink: 0;
+}
+.wsOn .wsDot { animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.actor { font-size: 11px; color: var(--text-2); font-weight: 600; margin-bottom: 2px; }
+.date  { font-size: 10px; color: var(--text-muted); text-transform: capitalize; }
