@@ -1,10 +1,11 @@
-﻿import styles from "./Sidebar.module.css"
+import styles from "./Sidebar.module.css"
 
 const NAV = [
-  { key: "dashboard", icon: "◈", label: "Dashboard" },
-  { key: "planeado",  icon: "⊟", label: "Planeado vs Real" },
-  { key: "atrasos",   icon: "⚠", label: "Atrasos" },
-  { key: "retorno",   icon: "↩", label: "Retorno de Cargas" },
+  { key: "programacao", icon: "📋", label: "Programação" },
+  { key: "dashboard",   icon: "◈",  label: "Dashboard" },
+  { key: "planeado",    icon: "⊟",  label: "Planeado vs Real" },
+  { key: "atrasos",     icon: "⚠",  label: "Atrasos" },
+  { key: "retorno",     icon: "↩",  label: "Retorno de Cargas" },
 ]
 
 export default function Sidebar({ page, onNav, online }) {

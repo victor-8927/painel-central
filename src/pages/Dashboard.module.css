@@ -39,6 +39,23 @@
 .kpiLabel  { font-size: 10px; color: var(--text-muted); margin-top: 5px; letter-spacing: 1px; text-transform: uppercase; }
 .kpiRed    { color: var(--red); }
 
+/* ── Métricas de desempenho ── */
+.metricas {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 10px; margin-bottom: 18px;
+}
+.metrica {
+  background: linear-gradient(135deg, #0f2318 0%, #1a3828 100%);
+  border: 1px solid #2a4a36;
+  border-radius: var(--radius); padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: border-color 0.15s;
+}
+.metrica:hover { border-color: var(--green-dim); }
+.metricaIcon  { font-size: 20px; line-height: 1; }
+.metricaVal   { font-size: 26px; font-weight: 700; color: #d0f0dc; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.metricaLabel { font-size: 10px; color: #6b9c7e; text-transform: uppercase; letter-spacing: 1px; }
+
 .filtros { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
 .filtro {
   padding: 5px 12px; border-radius: 20px;

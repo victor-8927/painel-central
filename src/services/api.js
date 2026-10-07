@@ -14,6 +14,19 @@ async function request(method, path, body) {
   return res.json()
 }
 
+async function requestForm(path, formData) {
+  const res = await fetch(`${BASE}${path}`, {
+    method: "POST",
+    body: formData,
+    cache: "no-store",
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }))
+    throw new Error(err.error || `HTTP ${res.status}`)
+  }
+  return res.json()
+}
+
 const today = () => new Date().toISOString().slice(0, 10)
 
 export const api = {
@@ -27,6 +40,18 @@ export const api = {
   retornoAnalista: (id, volumes) =>
     request("POST", `/vehicles/${id}/retorno-analista`, {
       actorName: "Victor Mosquera", volumes,
+    }),
+
+  // ── Programação ──────────────────────────────────────────────────────────
+  // Passo 1: envia o Excel, recebe preview (sem salvar no banco ainda)
+  parseExcel: (formData) => requestForm("/plans/parse-excel", formData),
+
+  // Passo 2: confirma e salva no banco (libera para Edinaldo)
+  importarProgramacao: (preview) =>
+    request("POST", "/plans/import", {
+      date:     preview.date,
+      vehicles: preview.vehicles,
+      actorName: "Victor Mosquera",
     }),
 }
 
