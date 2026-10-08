@@ -6,7 +6,10 @@ const SKUS = ["kg3","kg5","kg10","kg20","kg40","kg50"]
 
 const todayBR = () => {
   const d = new Date()
-  return d.toLocaleDateString("pt-BR", { day:"2-digit", month:"2-digit", year:"numeric" })
+  // Manaus UTC-4
+  const manaus = new Date(d.getTime() - (d.getTimezoneOffset() + 240) * 60000)
+  const [y, m, day] = manaus.toISOString().slice(0,10).split("-")
+  return `${day}/${m}/${y}`
 }
 
 function totalPeso(v) {

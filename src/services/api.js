@@ -27,7 +27,12 @@ async function requestForm(path, formData) {
   return res.json()
 }
 
-const today = () => new Date().toISOString().slice(0, 10)
+// Manaus é UTC-4, sem horário de verão
+const today = () => {
+  const d = new Date()
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset() - 240) // força UTC-4
+  return d.toISOString().slice(0, 10)
+}
 
 export const api = {
   getDashboard:        () => request("GET", `/dashboard/${today()}`),
