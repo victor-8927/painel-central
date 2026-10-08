@@ -55,26 +55,32 @@ export default function Dashboard({ onSelectVehicle, setOnline }) {
   const [data, setData]       = useState(null)
   const [loading, setLoading] = useState(true)
   const [filtro, setFiltro]   = useState("todos")
-  const wsRef = useRef(null)
+  const wsRef        = useRef(null)
+  const cancelledRef = useRef(false)
 
   const load = useCallback(async () => {
     try {
       const d = await api.getDashboard()
+      if (cancelledRef.current) return
       setData(d)
     } catch {
+      if (cancelledRef.current) return
       setData(MOCK)
     } finally {
-      setLoading(false)
+      if (!cancelledRef.current) setLoading(false)
     }
   }, [])
 
   useEffect(() => {
+    cancelledRef.current = false
     load()
     wsRef.current = connectWS((msg) => {
+      if (cancelledRef.current) return
       if (msg.type === "STATE_CHANGE" || msg.type === "DAILY_SNAPSHOT") load()
       setOnline(true)
     })
     return () => {
+      cancelledRef.current = true
       wsRef.current?.close()
       setOnline(false)
     }
