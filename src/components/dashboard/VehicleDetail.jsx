@@ -19,8 +19,10 @@ export default function VehicleDetail({ vehicle, onClose }) {
   const [volumes, setVolumes] = useState([])
 
   useEffect(() => {
-    api.getHistory(vehicle.id).then(setHistory).catch(() => [])
-    api.getVolumes(vehicle.id).then(setVolumes).catch(() => [])
+    let cancelled = false
+    api.getHistory(vehicle.id).then(d => { if (!cancelled) setHistory(d) }).catch(() => {})
+    api.getVolumes(vehicle.id).then(d => { if (!cancelled) setVolumes(d) }).catch(() => {})
+    return () => { cancelled = true }
   }, [vehicle.id])
 
   return (
