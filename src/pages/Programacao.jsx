@@ -29,8 +29,10 @@ export default function Programacao() {
 
   // ── Carrega programação do dia ao abrir ────────────────────────────────
   useEffect(() => {
+    let cancelled = false
     api.getVehicles()
       .then(vehicles => {
+        if (cancelled) return
         if (vehicles && vehicles.length > 0) {
           setPreview({ date: todayBR(), vehicles })
           setEtapa("preview")
@@ -38,7 +40,8 @@ export default function Programacao() {
           setEtapa("upload")
         }
       })
-      .catch(() => setEtapa("upload"))
+      .catch(() => { if (!cancelled) setEtapa("upload") })
+    return () => { cancelled = true }
   }, [])
 
   // ── Upload e parse via API ──────────────────────────────────────────────
