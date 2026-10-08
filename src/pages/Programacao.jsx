@@ -1,8 +1,13 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { api } from "../services/api"
 import styles from "./Programacao.module.css"
 
 const SKUS = ["kg3","kg5","kg10","kg20","kg40","kg50"]
+
+const todayBR = () => {
+  const d = new Date()
+  return d.toLocaleDateString("pt-BR", { day:"2-digit", month:"2-digit", year:"numeric" })
+}
 
 function totalPeso(v) {
   return (
@@ -16,11 +21,25 @@ function totalPeso(v) {
 }
 
 export default function Programacao() {
-  const [etapa, setEtapa]         = useState("upload")   // upload | preview | enviando | ok | erro
-  const [preview, setPreview]     = useState(null)        // { date, vehicles[] }
-  const [erroMsg, setErroMsg]     = useState("")
+  const [etapa, setEtapa]           = useState("carregando")  // carregando | upload | preview | enviando | ok | erro
+  const [preview, setPreview]       = useState(null)           // { date, vehicles[] }
+  const [erroMsg, setErroMsg]       = useState("")
   const [sucessoMsg, setSucessoMsg] = useState("")
   const fileRef = useRef(null)
+
+  // ── Carrega programação do dia ao abrir ────────────────────────────────
+  useEffect(() => {
+    api.getVehicles()
+      .then(vehicles => {
+        if (vehicles && vehicles.length > 0) {
+          setPreview({ date: todayBR(), vehicles })
+          setEtapa("preview")
+        } else {
+          setEtapa("upload")
+        }
+      })
+      .catch(() => setEtapa("upload"))
+  }, [])
 
   // ── Upload e parse via API ──────────────────────────────────────────────
   const handleFile = async (file) => {
@@ -71,12 +90,20 @@ export default function Programacao() {
           <h1 className={styles.h1}>Programação do Dia</h1>
           <div className={styles.sub}>Importe a planilha Excel e libere o turno para a expedição</div>
         </div>
-        {etapa === "ok" && (
+        {(etapa === "ok" || etapa === "preview") && (
           <button className={styles.btnNova} onClick={handleNova}>
-            + Nova programação
+            ↑ Reimportar Excel
           </button>
         )}
       </div>
+
+      {/* ── CARREGANDO ── */}
+      {etapa === "carregando" && (
+        <div className={styles.statusBox}>
+          <div className={styles.spinner} />
+          <div className={styles.statusMsg}>Buscando programação do dia...</div>
+        </div>
+      )}
 
       {/* ── UPLOAD ── */}
       {etapa === "upload" && (
