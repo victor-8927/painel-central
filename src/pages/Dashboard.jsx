@@ -74,9 +74,10 @@ export default function Dashboard({ onSelectVehicle, setOnline }) {
       if (msg.type === "STATE_CHANGE" || msg.type === "DAILY_SNAPSHOT") load()
       setOnline(true)
     })
-    wsRef.current.onopen  = () => setOnline(true)
-    wsRef.current.onclose = () => setOnline(false)
-    return () => wsRef.current?.close()
+    return () => {
+      wsRef.current?.close()
+      setOnline(false)
+    }
   }, [load])
 
   const vehicles = data?.vehicles || []

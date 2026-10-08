@@ -56,13 +56,39 @@ export const api = {
 }
 
 export function connectWS(onMessage) {
-  const wsBase = (import.meta.env.VITE_API_URL || "http://localhost:3001")
-    .replace("http", "ws").replace("/api", "")
-  const ws = new WebSocket(`${wsBase}/ws?actorId=victor-mosquera-id`)
-  ws.onmessage = (e) => { try { onMessage(JSON.parse(e.data)) } catch {} }
-  ws.onopen  = () => console.log("[WS] conectado")
-  ws.onclose = () => setTimeout(() => connectWS(onMessage), 5000)
-  const ping = setInterval(() => { if (ws.readyState === 1) ws.send(JSON.stringify({ type: "PING" })) }, 30000)
-  ws.onclose = () => { clearInterval(ping); setTimeout(() => connectWS(onMessage), 5000) }
-  return ws
+  let ws = null
+  let ping = null
+  let reconnectTimer = null
+  let destroyed = false
+
+  function connect() {
+    if (destroyed) return
+    const wsBase = (import.meta.env.VITE_API_URL || "http://localhost:3001")
+      .replace("http", "ws").replace("/api", "")
+    ws = new WebSocket(`${wsBase}/ws?actorId=victor-mosquera-id`)
+    ws.onmessage = (e) => { try { onMessage(JSON.parse(e.data)) } catch {} }
+    ws.onopen    = () => {
+      console.log("[WS] conectado")
+      ping = setInterval(() => {
+        if (ws && ws.readyState === 1) ws.send(JSON.stringify({ type: "PING" }))
+      }, 30000)
+    }
+    ws.onclose = () => {
+      clearInterval(ping)
+      if (!destroyed) reconnectTimer = setTimeout(connect, 5000)
+    }
+    ws.onerror = () => ws.close()
+  }
+
+  connect()
+
+  // retorna handle com close() para cleanup no useEffect
+  return {
+    close() {
+      destroyed = true
+      clearInterval(ping)
+      clearTimeout(reconnectTimer)
+      if (ws) ws.close()
+    }
+  }
 }
