@@ -1,0 +1,19 @@
+{
+  "name": "GELOCRIM · Painel Central",
+  "short_name": "Painel",
+  "description": "Painel operacional do analista — GELOCRIM",
+  "theme_color": "#0f2318",
+  "background_color": "#0f2318",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
