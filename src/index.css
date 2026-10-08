@@ -26,7 +26,7 @@ html, body, #root {
   height: 100%;
   background: var(--bg-0);
   color: var(--text-1);
-  font-family: "SF Pro Display", -apple-system, "Segoe UI", Roboto, monospace;
+  font-family: "ibm-plex-sans-jp", "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
 }
